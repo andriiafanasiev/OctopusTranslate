@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Molengo
+- Font Author: Copyright (c) 2007, Denis Moyogo Jacquerye <moyogo@gmail.com>, with Reserved Font Name Molengo
+- Font Source: https://fonts.gstatic.com/s/molengo/v16/I_uuMpWeuBzZNBtQbbRQkiCvs5Y.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

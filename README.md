@@ -7,11 +7,14 @@ This is a simple React-based translator application that uses the DeepL API for 
 - Translate text from one language to another
 - Supports multiple languages (English, Ukrainian, Spanish, French, German, etc.)
 - Automatic language detection option available
+- **Copy Translation**: Easily copy the translated text to your clipboard
+- **Language Detection**: Automatically detects the language of the input text when using the "Detect language" option
 
 ## Technologies Used
 
 - **React**: Frontend framework for building the user interface.
 - **DeepL API**: External service for text translation.
+- **Tailwind CSS**: Utility-first CSS framework for styling the application.
 
 ## Prerequisites
 
@@ -63,5 +66,3 @@ The app uses the **DeepL API** for translation. For more details on the API, you
 ### Additional Instructions
 
 If you want to deploy the app, make sure to update the `.env` file with your production API key.
-
-Let me know if you want to make any changes!

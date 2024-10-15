@@ -1,12 +1,15 @@
 import React from 'react';
 
-const TranslationBox = ({ text, onTextChange }) => {
+const TranslationBox = ({ text, onTextChange, placeholder, isReadOnly }) => {
   return (
-    <div className="translation-box">
+    <div className="w-full border border-none rounded-lg p-4 relative">
       <textarea
+        className="w-full h-full text-lg border-none focus:outline-none resize-none"
         value={text}
         onChange={(e) => onTextChange(e.target.value)}
-        placeholder="Type to translate."
+        placeholder={placeholder}
+        maxLength={5000}
+        readOnly={isReadOnly}
       />
     </div>
   );

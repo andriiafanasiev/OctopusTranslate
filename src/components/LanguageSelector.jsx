@@ -1,10 +1,14 @@
 import React from 'react';
 
-const LanguageSelector = ({ selectedLanguage, onLanguageChange }) => {
+const LanguageSelector = ({
+  selectedLanguage,
+  onLanguageChange,
+  showDetectOption,
+}) => {
   return (
     <div className="language-selector">
       <select value={selectedLanguage} onChange={onLanguageChange}>
-        <option value="auto">Detect language</option>
+        {showDetectOption && <option value="auto">Detect language</option>}
         <option value="en">English (American)</option>
         <option value="uk">Ukrainian</option>
         <option value="es">Spanish</option>

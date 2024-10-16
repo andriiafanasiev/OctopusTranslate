@@ -4,6 +4,7 @@ import TranslationBox from './TranslationBox';
 
 const TranslatorApp = () => {
   const [sourceLanguage, setSourceLanguage] = useState('auto');
+  const [detectedLanguage, setDetectedLanguage] = useState(''); // Новий стан для збереження виявленої мови
   const [targetLanguage, setTargetLanguage] = useState('en');
   const [textToTranslate, setText] = useState('');
   const [translatedText, setTranslatedText] = useState('');
@@ -11,6 +12,7 @@ const TranslatorApp = () => {
   useEffect(() => {
     if (!textToTranslate) {
       setTranslatedText('');
+      setDetectedLanguage('');
       return;
     }
 
@@ -34,11 +36,21 @@ const TranslatorApp = () => {
       .then((response) => response.json())
       .then((result) => {
         setTranslatedText(result.translations[0].text);
+        if (sourceLanguage === 'auto') {
+          // Встановлюємо виявлену мову після успішного запиту
+          setDetectedLanguage(result.translations[0].detected_source_language);
+        }
       })
       .catch((error) => console.error('Error:', error));
   }, [sourceLanguage, targetLanguage, textToTranslate]);
 
-  const handleSourceLanguageChange = (e) => setSourceLanguage(e.target.value);
+  const handleSourceLanguageChange = (e) => {
+    setSourceLanguage(e.target.value);
+    if (e.target.value !== 'auto') {
+      setDetectedLanguage(''); // Скидаємо виявлену мову, якщо вибрано конкретну мову
+    }
+  };
+
   const handleTargetLanguageChange = (e) => setTargetLanguage(e.target.value);
   const handleTextChange = (newText) => {
     setText(newText);
@@ -60,6 +72,7 @@ const TranslatorApp = () => {
             selectedLanguage={sourceLanguage}
             onLanguageChange={handleSourceLanguageChange}
             showDetectOption={true}
+            detectedLanguage={detectedLanguage}
           />
           <LanguageSelector
             selectedLanguage={targetLanguage}

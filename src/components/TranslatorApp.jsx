@@ -48,17 +48,20 @@ const TranslatorApp = () => {
   };
 
   return (
-    <div className="main-component bg-[#E6E6FA] min-h-screen flex items-center justify-center">
+    <div className="main-component bg-[#B9D9EB] min-h-screen flex items-center justify-center">
+      <img
+        className="max-w-24 max-h-24 absolute top-10 right-10 rotate-12"
+        src="/img/octopus.png"
+        alt="octopus-image"
+      />
       <div className="w-full max-w-4xl p-8 bg-white shadow-md rounded-lg">
         <div className="flex justify-between items-center mb-6">
           <LanguageSelector
-            className="text-xl font-semibold"
             selectedLanguage={sourceLanguage}
             onLanguageChange={handleSourceLanguageChange}
             showDetectOption={true}
           />
           <LanguageSelector
-            className="text-xl font-semibold"
             selectedLanguage={targetLanguage}
             onLanguageChange={handleTargetLanguageChange}
           />
@@ -87,9 +90,9 @@ const TranslatorApp = () => {
             />
             <div className="flex justify-end items-center mt-4">
               <button
-                className="text-purple-600 font-semibold border border-purple-600 px-4 py-1 rounded-lg 
-                hover:bg-purple-600 hover:text-white 
-                active:bg-purple-800 active:border-purple-700 
+                className="text-[#7CB9E8] font-semibold border border-[#7CB9E8] px-4 py-1 rounded-lg 
+                hover:bg-[#7CB9E8] hover:text-white 
+                active:bg-[#7CB9E8] active:border-[#7CB9E8]
                 transition duration-200 ease-in-out"
                 onClick={() => navigator.clipboard.writeText(translatedText)}
               >

@@ -5,7 +5,7 @@ const LanguageSelector = ({
   selectedLanguage,
   onLanguageChange,
   showDetectOption,
-  detectedLanguage,
+  detectedLang,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -18,7 +18,7 @@ const LanguageSelector = ({
         className="bg-white border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 w-56 text-left text-sm" // Added text-sm for smaller button text
       >
         {selectedLanguage === 'auto'
-          ? `Detect language${detectedLanguage ? ` (${detectedLanguage})` : ''}`
+          ? `Detect language${detectedLang ? ` (${detectedLang})` : ''}`
           : languages.find((lang) => lang.code === selectedLanguage)?.name ||
             'Select language'}
         <span className="ml-2">&#9662;</span>

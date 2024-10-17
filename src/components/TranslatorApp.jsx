@@ -3,8 +3,8 @@ import LanguageSelector from './LanguageSelector';
 import TranslationBox from './TranslationBox';
 
 const TranslatorApp = () => {
-  const [sourceLanguage, setSourceLanguage] = useState('auto');
-  const [detectedLanguage, setDetectedLanguage] = useState(''); // Новий стан для збереження виявленої мови
+  const [sourceLang, setSourceLang] = useState('auto');
+  const [detectedLang, setDetectedLang] = useState(''); // Новий стан для збереження виявленої мови
   const [targetLanguage, setTargetLanguage] = useState('en');
   const [textToTranslate, setText] = useState('');
   const [translatedText, setTranslatedText] = useState('');
@@ -12,7 +12,7 @@ const TranslatorApp = () => {
   useEffect(() => {
     if (!textToTranslate) {
       setTranslatedText('');
-      setDetectedLanguage('');
+      setDetectedLang('');
       return;
     }
 
@@ -25,8 +25,8 @@ const TranslatorApp = () => {
       target_lang: targetLanguage,
     });
 
-    if (sourceLanguage !== 'auto') {
-      data.append('source_lang', sourceLanguage);
+    if (sourceLang !== 'auto') {
+      data.append('source_lang', sourceLang);
     }
 
     fetch(url, {
@@ -36,18 +36,18 @@ const TranslatorApp = () => {
       .then((response) => response.json())
       .then((result) => {
         setTranslatedText(result.translations[0].text);
-        if (sourceLanguage === 'auto') {
+        if (sourceLang === 'auto') {
           // Встановлюємо виявлену мову після успішного запиту
-          setDetectedLanguage(result.translations[0].detected_source_language);
+          setDetectedLang(result.translations[0].detected_source_language);
         }
       })
       .catch((error) => console.error('Error:', error));
-  }, [sourceLanguage, targetLanguage, textToTranslate]);
+  }, [sourceLang, targetLanguage, textToTranslate]);
 
-  const handleSourceLanguageChange = (e) => {
-    setSourceLanguage(e.target.value);
+  const handlesourceLangChange = (e) => {
+    setSourceLang(e.target.value);
     if (e.target.value !== 'auto') {
-      setDetectedLanguage(''); // Скидаємо виявлену мову, якщо вибрано конкретну мову
+      setDetectedLang(''); // Скидаємо виявлену мову, якщо вибрано конкретну мову
     }
   };
 
@@ -69,10 +69,10 @@ const TranslatorApp = () => {
       <div className="w-full max-w-4xl p-8 bg-white shadow-md rounded-lg">
         <div className="flex justify-between items-center mb-6">
           <LanguageSelector
-            selectedLanguage={sourceLanguage}
-            onLanguageChange={handleSourceLanguageChange}
+            selectedLanguage={sourceLang}
+            onLanguageChange={handlesourceLangChange}
             showDetectOption={true}
-            detectedLanguage={detectedLanguage}
+            detectedLang={detectedLang}
           />
           <LanguageSelector
             selectedLanguage={targetLanguage}

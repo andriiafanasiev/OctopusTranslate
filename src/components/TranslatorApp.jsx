@@ -4,7 +4,7 @@ import TranslationBox from './TranslationBox';
 
 const TranslatorApp = () => {
   const [sourceLang, setSourceLang] = useState('auto');
-  const [detectedLang, setDetectedLang] = useState(''); // Новий стан для збереження виявленої мови
+  const [detectedLang, setDetectedLang] = useState('');
   const [targetLanguage, setTargetLanguage] = useState('en');
   const [textToTranslate, setText] = useState('');
   const [translatedText, setTranslatedText] = useState('');
@@ -37,7 +37,6 @@ const TranslatorApp = () => {
       .then((result) => {
         setTranslatedText(result.translations[0].text);
         if (sourceLang === 'auto') {
-          // Встановлюємо виявлену мову після успішного запиту
           setDetectedLang(result.translations[0].detected_source_language);
         }
       })
@@ -47,7 +46,7 @@ const TranslatorApp = () => {
   const handlesourceLangChange = (e) => {
     setSourceLang(e.target.value);
     if (e.target.value !== 'auto') {
-      setDetectedLang(''); // Скидаємо виявлену мову, якщо вибрано конкретну мову
+      setDetectedLang('');
     }
   };
 

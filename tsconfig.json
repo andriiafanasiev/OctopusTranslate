@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        "target": "es5" /* Sets the target JavaScript version */,
+        "lib": [
+            "dom",
+            "esnext"
+        ] /* Includes libraries for DOM and latest ES features */,
+        "jsx": "react-jsx" /* Specifies that JSX will be used */,
+        "module": "esnext" /* Specifies the module system as ES */,
+        "moduleResolution": "node" /* Determines how modules are resolved (default is node) */,
+        "esModuleInterop": true /* Enables support for importing CommonJS modules */,
+        "skipLibCheck": true /* Skips type checking of declaration files */,
+        "forceConsistentCasingInFileNames": true /* Ensures consistent casing in file names */,
+        "strict": true /* Enables all strict type-checking options */,
+        "noImplicitAny": true /* Disallows the use of 'any' type implicitly */,
+        "noUnusedLocals": true /* Reports an error if there are unused variables */,
+        "noUnusedParameters": true /* Reports an error if there are unused function parameters */,
+        "resolveJsonModule": true /* Allows importing JSON files */,
+        "isolatedModules": true /* Ensures each file can be transpiled independently */,
+        "jsxImportSource": "react" /* Specifies that JSX uses React.createElement */,
+        "allowJs": true /* Allows JavaScript files in the project */,
+        "strictNullChecks": true /* Enables strict null and undefined checks */,
+        "skipDefaultLibCheck": true /* Skips type checking of default library files */,
+        "noEmit": false /* Disables emitting JavaScript files */
+    },
+    "include": ["src/**/*" /* Includes all files in the 'src' folder */],
+    "exclude": [
+        "node_modules" /* Excludes the 'node_modules' folder from type checking */
+    ]
+}

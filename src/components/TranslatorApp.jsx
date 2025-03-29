@@ -16,40 +16,34 @@ const TranslatorApp = () => {
             return;
         }
 
-        const apiKey = '74192183-d133-4208-8089-02b3a9fb99e4:fx';
-        const url = `https://api-free.deepl.com/v2/translate`;
-
-        const data = new URLSearchParams({
-            auth_key: apiKey,
-            text: textToTranslate,
-            target_lang: targetLanguage,
-        });
-
-        if (sourceLang !== 'auto') {
-            data.append('source_lang', sourceLang);
-        }
-
-        fetch(url, {
-            method: 'POST',
-            body: data,
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((result) => {
-                setTranslatedText(result.translations[0].text);
-                if (sourceLang === 'auto') {
-                    setDetectedLang(
-                        result.translations[0].detected_source_language
-                    );
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
+        const fetchTranslation = async () => {
+            const response = await fetch('/api/translate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    text: textToTranslate,
+                    target_lang: targetLanguage,
+                    source_lang: sourceLang,
+                }),
             });
+
+            if (!response.ok) {
+                console.error('Error fetching translation:', response);
+                return;
+            }
+
+            const result = await response.json();
+            setTranslatedText(result.translatedText);
+            if (sourceLang === 'auto') {
+                setDetectedLang(result.detectedLang);
+            }
+        };
+
+        fetchTranslation().catch((error) => {
+            console.error('Error:', error);
+        });
     }, [sourceLang, targetLanguage, textToTranslate]);
 
     const handlesourceLangChange = (e) => {

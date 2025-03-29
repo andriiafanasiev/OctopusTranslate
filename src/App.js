@@ -1,10 +1,10 @@
 import React from 'react';
-import TranslatorApp from './TranslatorApp';
+import TranslatorApp from './components/TranslatorApp';
 
 function App() {
     return (
         <div className="App">
-            <TranslatorApp />
+            <TranslatorApp></TranslatorApp>
         </div>
     );
 }

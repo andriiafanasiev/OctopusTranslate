@@ -32,9 +32,13 @@ const TranslatorApp = () => {
         fetch(url, {
             method: 'POST',
             body: data,
-            mode: 'no-cors', // This can potentially cause issues with response parsing
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then((result) => {
                 setTranslatedText(result.translations[0].text);
                 if (sourceLang === 'auto') {
@@ -43,7 +47,9 @@ const TranslatorApp = () => {
                     );
                 }
             })
-            .catch((error) => console.error('Error:', error));
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }, [sourceLang, targetLanguage, textToTranslate]);
 
     const handlesourceLangChange = (e) => {

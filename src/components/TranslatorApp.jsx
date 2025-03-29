@@ -32,7 +32,7 @@ const TranslatorApp = () => {
         fetch(url, {
             method: 'POST',
             body: data,
-            mode: 'no-cors',
+            mode: 'no-cors', // This can potentially cause issues with response parsing
         })
             .then((response) => response.json())
             .then((result) => {
